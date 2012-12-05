@@ -31,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3272BC0C166F8EED00D6F205 /* ADVPercentProgressBarDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ADVPercentProgressBarDelegate.h; path = ADVProgressBar/Classes/ADVPercentProgressBarDelegate.h; sourceTree = "<group>"; };
 		ECE9A473150A435E0076F0C5 /* ADVProgressBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ADVProgressBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE9A477150A435E0076F0C5 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		ECE9A479150A435E0076F0C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -152,6 +153,7 @@
 			children = (
 				ECE9A4B6150A48350076F0C5 /* ADVPercentProgressBar.h */,
 				ECE9A4B7150A48350076F0C5 /* ADVPercentProgressBar.m */,
+				3272BC0C166F8EED00D6F205 /* ADVPercentProgressBarDelegate.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";

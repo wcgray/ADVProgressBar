@@ -32,11 +32,11 @@
 #define RIGHT_PADDING 3.0f
 
 #import "ADVPercentProgressBar.h"
+#import "ADVPercentProgressBarDelegate.h"
 
 @implementation ADVPercentProgressBar
 
-@synthesize progress;
-
+@synthesize progress, delegate;
 
 - (id)initWithFrame:(CGRect)frame andProgressBarColor:(ADVProgressBarColor)barColor
 {
@@ -61,8 +61,8 @@
         percentView = [[UIView alloc] initWithFrame:CGRectMake(LEFT_PADDING, 6, 32, 17)];
         
         UIImageView* percentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 32, 17)];
-        
         [percentImageView setImage:[UIImage imageNamed:@"progress-count.png"]];
+        [percentImageView setTag:2];
         
         UILabel* percentLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 32, 17)];
         
@@ -113,8 +113,22 @@
             percentFrame.origin.x = (leftEdge < LEFT_PADDING) ? LEFT_PADDING : leftEdge;
             percentView.frame = percentFrame;
             
+            UIImageView *percentImageView = (UIImageView*)[percentView viewWithTag:2];
             UILabel* percentLabel = (UILabel*)[percentView viewWithTag:1];
-            [percentLabel setText:[NSString  stringWithFormat:@"%d%%", (int)(progress*100)]];
+            
+            NSString *customText;
+            if (self.delegate && [self.delegate respondsToSelector:@selector(textForBarAtPercent:)] && (customText = [self.delegate textForBarAtPercent:progress])) {
+                CGSize size = [customText sizeWithFont:percentLabel.font];
+                percentViewWidth = size.width + 4.f;
+                NSLog(@"width: %f",size.width);
+                leftEdge = (progressImageView.frame.size.width - percentViewWidth) - RIGHT_PADDING;
+                percentView.frame = CGRectMake(leftEdge < LEFT_PADDING ? LEFT_PADDING : leftEdge, percentView.frame.origin.y, size.width + 4.f, percentView.frame.size.height);
+                percentImageView.frame = percentView.bounds;
+                percentLabel.frame = CGRectMake(2.f, 0, size.width, size.height);
+                [percentLabel setText:customText];
+            } else {
+                [percentLabel setText:[NSString  stringWithFormat:@"%d%%", (int)(progress*100)]];
+            }
             
         }
     }

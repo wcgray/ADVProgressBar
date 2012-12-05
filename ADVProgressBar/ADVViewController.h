@@ -29,8 +29,9 @@
  */
 
 #import <UIKit/UIKit.h>
+#import "ADVPercentProgressBarDelegate.h"
 
-@interface ADVViewController : UIViewController <UIWebViewDelegate>
+@interface ADVViewController : UIViewController <UIWebViewDelegate,ADVPercentProgressBarDelegate>
 
 
 @property (nonatomic, strong) NSArray* progressBars;

@@ -63,7 +63,7 @@
     
     
     ADVPercentProgressBar *redProgressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(10, 130, 292, 28) andProgressBarColor:ADVProgressBarRed];
-    
+    redProgressBar.delegate = self;
     [redProgressBar setProgress:0.5];
     
     [self.view addSubview:redProgressBar];
@@ -110,6 +110,16 @@
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+- (NSString*)textForBarAtPercent:(CGFloat)percent {
+    if (percent < 0.25) {
+        return @"Low";
+    } else if (percent < 0.75) {
+        return @"Medium";
+    } else {
+        return @"High";
+    }
 }
 
 -(BOOL) webView:(UIWebView *)inWeb shouldStartLoadWithRequest:(NSURLRequest *)inRequest navigationType:(UIWebViewNavigationType)inType {

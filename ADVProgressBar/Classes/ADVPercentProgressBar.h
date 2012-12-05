@@ -30,6 +30,8 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol ADVPercentProgressBarDelegate;
+
 typedef enum
 {       
     ADVProgressBarGreen,
@@ -50,6 +52,7 @@ typedef enum
     UIImage *progressFillImage;
 }
 
+@property (nonatomic, assign) NSObject<ADVPercentProgressBarDelegate> *delegate;
 @property (nonatomic, readwrite, assign) CGFloat progress;
 
 - (id)initWithFrame:(CGRect)frame andProgressBarColor:(ADVProgressBarColor)barColor;
